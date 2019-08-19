@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AWJ.ProfanityFilter.Repositories
@@ -20,23 +17,23 @@ namespace AWJ.ProfanityFilter.Repositories
         {
             if (uri == null) throw new ArgumentNullException(nameof(uri));
 
-            try
+            using (var client = new HttpClient())
             {
-                using (var client = new HttpClient())
-                {
-                    var file = await client.GetStringAsync(uri);
-                    var lines = file
-                        .Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None)
-                        .ToList()
-                        .Where(l => !l.StartsWith("#"));
-                    return lines;
-                }
+                var content = await client.GetStringAsync(uri);
+                var lines = ParseLines(content);
+                return lines;
             }
-            catch (Exception e)
-            {
+        }
 
-                throw;
-            }
+        public IEnumerable<string> ParseLines(string content)
+        {
+            var lines = content
+                .Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None)
+                .ToList()
+                .Where(l => !l.StartsWith("#"))
+                .Select(l => l.Trim())
+                .Where(l => !string.IsNullOrWhiteSpace(l));
+            return lines;
         }
     }
 }
