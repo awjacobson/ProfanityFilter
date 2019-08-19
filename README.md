@@ -4,7 +4,7 @@
 ProfanityFilter is a .NET library for checking if a text contains inappropriate words or phrases.
 
 ## Install ProfanityFilter via Nuget
-If you want to include ProfanityFilter in your project, you can [install it directly from NuGet]()
+If you want to include ProfanityFilter in your project, you can [install it directly from NuGet](https://www.nuget.org/packages/AWJ.ProfanityFilter/)
 
 To install ProfanityFilter, run the following command in the Package Manager Console
 ```
