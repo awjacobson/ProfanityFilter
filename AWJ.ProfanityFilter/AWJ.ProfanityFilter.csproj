@@ -4,6 +4,16 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Aaron Jacobson</Authors>
+    <PackageProjectUrl>https://github.com/awjacobson/ProfanityFilter</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/awjacobson/ProfanityFilter</RepositoryUrl>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
