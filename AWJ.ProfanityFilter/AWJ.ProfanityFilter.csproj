@@ -8,6 +8,8 @@
     <RepositoryUrl>https://github.com/awjacobson/ProfanityFilter</RepositoryUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Version>1.0.1</Version>
+    <Copyright>Copyright 2019</Copyright>
+    <PackageTags>c# csharp .net</PackageTags>
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net452' ">
     <Reference Include="System.Net.Http" />
