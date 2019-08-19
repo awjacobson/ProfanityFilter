@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace AWJ.ProfanityFilter.Services
@@ -8,6 +6,7 @@ namespace AWJ.ProfanityFilter.Services
     public interface IProfanityService
     {
         bool HasBadWords(string input);
+        bool HasUrl(string input);
     }
 
     public class ProfanityService : IProfanityService
@@ -35,6 +34,12 @@ namespace AWJ.ProfanityFilter.Services
             }
 
             return false;
+        }
+
+        public bool HasUrl(string input)
+        {
+            var regex = new Regex(@"(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            return regex.IsMatch(input);
         }
 
         /// <summary>

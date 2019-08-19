@@ -7,7 +7,7 @@
     <PackageProjectUrl>https://github.com/awjacobson/ProfanityFilter</PackageProjectUrl>
     <RepositoryUrl>https://github.com/awjacobson/ProfanityFilter</RepositoryUrl>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-    <Version>1.0.2</Version>
+    <Version>1.0.3</Version>
     <Copyright>Copyright 2019</Copyright>
     <PackageTags>c# csharp .net</PackageTags>
   </PropertyGroup>
