@@ -9,8 +9,12 @@ namespace AWJ.ProfanityFilter.Tests.Services.ProfanityServiceTests
         [TestMethod]
         public void ReturnTrueWhenUrlFound()
         {
+            // Arrange
+            var badwords = new[] { "porn" };
+            var service = new ProfanityService(badwords);
+
             // Act
-            var actual = ProfanityService.HasUrl("click this http://www.foufos.gr/kino");
+            var actual = service.HasUrl("click this http://www.foufos.gr/kino");
 
             // Assert
             Assert.IsTrue(actual);
@@ -19,8 +23,12 @@ namespace AWJ.ProfanityFilter.Tests.Services.ProfanityServiceTests
         [TestMethod]
         public void ReturnFalseWhenUrlNotFound()
         {
+            // Arrange
+            var badwords = new[] { "porn" };
+            var service = new ProfanityService(badwords);
+
             // Act
-            var actual = ProfanityService.HasUrl("click this link");
+            var actual = service.HasUrl("click this link");
 
             // Assert
             Assert.IsFalse(actual);

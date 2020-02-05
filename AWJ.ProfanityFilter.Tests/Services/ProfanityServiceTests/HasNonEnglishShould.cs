@@ -9,8 +9,12 @@ namespace AWJ.ProfanityFilter.Tests.Services.ProfanityServiceTests
         [TestMethod]
         public void ReturnFalseWhenEnglish()
         {
+            // Arrange
+            var badwords = new[] { "porn" };
+            var service = new ProfanityService(badwords);
+
             // Act
-            var actual = ProfanityService.HasNonEnglish("this text should be okay");
+            var actual = service.HasNonEnglish("this text should be okay");
 
             // Assert
             Assert.IsFalse(actual);
@@ -19,8 +23,12 @@ namespace AWJ.ProfanityFilter.Tests.Services.ProfanityServiceTests
         [TestMethod]
         public void ReturnTrueWhenCryllic()
         {
+            // Arrange
+            var badwords = new[] { "porn" };
+            var service = new ProfanityService(badwords);
+
             // Act
-            var actual = ProfanityService.HasNonEnglish("Регистрация");
+            var actual = service.HasNonEnglish("Регистрация");
 
             // Assert
             Assert.IsTrue(actual);

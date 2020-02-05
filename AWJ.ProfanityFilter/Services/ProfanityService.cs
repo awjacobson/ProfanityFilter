@@ -3,7 +3,14 @@ using System.Text.RegularExpressions;
 
 namespace AWJ.ProfanityFilter.Services
 {
-    public class ProfanityService
+    public interface IProfanityService
+    {
+        bool HasBadWords(string input);
+        bool HasUrl(string input);
+        bool HasNonEnglish(string input);
+    }
+
+    public class ProfanityService : IProfanityService
     {
         private readonly IList<string> _patterns;
 
@@ -30,16 +37,14 @@ namespace AWJ.ProfanityFilter.Services
             return false;
         }
 
-        public static bool HasUrl(string input)
+        public bool HasUrl(string input)
         {
             var regex = new Regex(@"(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})", RegexOptions.IgnoreCase | RegexOptions.Multiline);
             return regex.IsMatch(input);
         }
 
-        public static bool HasNonEnglish(string input)
+        public bool HasNonEnglish(string input)
         {
-            // ^[\x00-\x7F]+$
-            // \P{M}\p{M}
             var regex = new Regex(@"^[\x00-\x7F]+$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
             return !regex.IsMatch(input);
         }
@@ -52,7 +57,7 @@ namespace AWJ.ProfanityFilter.Services
         /// </remarks>
         /// <param name="input"></param>
         /// <returns></returns>
-        public string CreatePattern(string input)
+        public static string CreatePattern(string input)
         {
             return $@"(^|\W){input}($|\W)";
         }
