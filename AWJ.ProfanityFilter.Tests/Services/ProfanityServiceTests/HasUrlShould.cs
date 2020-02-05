@@ -1,8 +1,5 @@
 ﻿using AWJ.ProfanityFilter.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AWJ.ProfanityFilter.Tests.Services.ProfanityServiceTests
 {
@@ -12,12 +9,8 @@ namespace AWJ.ProfanityFilter.Tests.Services.ProfanityServiceTests
         [TestMethod]
         public void ReturnTrueWhenUrlFound()
         {
-            // Arrange
-            var badwords = new[] { "porn" };
-            var service = new ProfanityService(badwords);
-
             // Act
-            var actual = service.HasUrl("click this http://www.foufos.gr/kino");
+            var actual = ProfanityService.HasUrl("click this http://www.foufos.gr/kino");
 
             // Assert
             Assert.IsTrue(actual);
@@ -26,12 +19,8 @@ namespace AWJ.ProfanityFilter.Tests.Services.ProfanityServiceTests
         [TestMethod]
         public void ReturnFalseWhenUrlNotFound()
         {
-            // Arrange
-            var badwords = new[] { "porn" };
-            var service = new ProfanityService(badwords);
-
             // Act
-            var actual = service.HasUrl("click this link");
+            var actual = ProfanityService.HasUrl("click this link");
 
             // Assert
             Assert.IsFalse(actual);

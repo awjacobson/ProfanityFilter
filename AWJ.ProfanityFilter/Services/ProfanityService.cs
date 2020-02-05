@@ -3,13 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace AWJ.ProfanityFilter.Services
 {
-    public interface IProfanityService
-    {
-        bool HasBadWords(string input);
-        bool HasUrl(string input);
-    }
-
-    public class ProfanityService : IProfanityService
+    public class ProfanityService
     {
         private readonly IList<string> _patterns;
 
@@ -36,10 +30,18 @@ namespace AWJ.ProfanityFilter.Services
             return false;
         }
 
-        public bool HasUrl(string input)
+        public static bool HasUrl(string input)
         {
             var regex = new Regex(@"(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})", RegexOptions.IgnoreCase | RegexOptions.Multiline);
             return regex.IsMatch(input);
+        }
+
+        public static bool HasNonEnglish(string input)
+        {
+            // ^[\x00-\x7F]+$
+            // \P{M}\p{M}
+            var regex = new Regex(@"^[\x00-\x7F]+$", RegexOptions.IgnoreCase | RegexOptions.Multiline);
+            return !regex.IsMatch(input);
         }
 
         /// <summary>

@@ -1,8 +1,5 @@
 ﻿using AWJ.ProfanityFilter.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace AWJ.ProfanityFilter.Tests.Services.ProfanityServiceTests
 {

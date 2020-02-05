@@ -1,7 +1,12 @@
 # ProfanityFilter
 [![.NET Framework](https://img.shields.io/badge/.NET%20Framework-%3E%3D%204.0-red.svg)](#) [![.NET Standard](https://img.shields.io/badge/.NET%20Standard-%3E%3D%202.0-red.svg)](#)
 
-ProfanityFilter is a .NET library for checking if a text contains inappropriate words or phrases.
+ProfanityFilter is a .NET library for checking if a text contains any combination of the following:
+* inappropriate words or phrases
+* non-English characters
+* urls
+
+This is useful when implementing a contact form that allows anonymous input for example.
 
 ## Install ProfanityFilter via Nuget
 If you want to include ProfanityFilter in your project, you can [install it directly from NuGet](https://www.nuget.org/packages/AWJ.ProfanityFilter/)
